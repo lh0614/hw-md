@@ -1,4 +1,4 @@
-
+<!-- 
 <p align="center">
 <img width=130 alt="web-editor-markdown" src="https://gitee.com/zengyong2020/web-editor-markdown/raw/master/markdown.jpeg" />
 <br>
@@ -11,7 +11,7 @@ A markdown editor in browser, supports collaborative editing
 <br>
 </p>
 
-## 💡 Web Editor Markdown
+<!-- ## 💡 Web Editor Markdown
 
 [web-editor-markdown](https://github.com/Ben-love-zy/web-editor-markdown.git) is a Markdown editor in Web browser and for real-time rendering like `Typora`. It is based on TypeScript and JavaScript, and does not rely on any third-party framework. It supports Chinese friendly and can be easily extended and connected to native JavaScript, Vue, React, Angular and other applications. It provides four rendering modes: `SOURCE`, `SOURCE_AND_PREVIEW`, `RENDER` and `PREVIEW`. If necessary, its underlying layer also supports the ability of collaborative editing and provides atomic `Operation` for extending collaborative editing.
 
@@ -45,4 +45,4 @@ console.log('content', editor.getContent());
 ```shell
 npm install
 npm start
-```
+``` -->
