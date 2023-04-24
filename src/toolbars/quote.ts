@@ -19,11 +19,11 @@ export class Quote {
         this.element.addEventListener("click", (e) => {
             const str:string = _this.editor.getContent()
             if (!_this.editor.getSelectionModel().isCollapsed()) {
-                _this.editor.insertTextAtCursor(`**${str?.substring(_this.editor.getCusor().anchor,_this.editor.getCusor().focus)}**`)
+                _this.editor.insertTextAtCursor(`>${str?.substring(_this.editor.getCusor().anchor,_this.editor.getCusor().focus)}`)
             } else {
-                _this.editor.insertTextAtCursor(`****`)
+                _this.editor.insertTextAtCursor(`>`)
                 console.log(_this.editor.getCusor().anchor);
-                _this.editor.setSelection(_this.editor.getCusor().anchor-2)
+                _this.editor.setSelection(_this.editor.getCusor().anchor-1)
             }
         })
     }

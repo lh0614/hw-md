@@ -13,8 +13,7 @@ export class Header {
         this.addEventLintsener()
         this.createHeader()
         setTimeout(() => {
-        this.element.parentElement?.appendChild(this.hElement)
-            
+            this.element.parentElement?.appendChild(this.hElement)
         }, 0);
         
     }
@@ -42,37 +41,7 @@ export class Header {
         }, 0);
         for (let i = 0; i < 6; i++) {
             const li = document.createElement("div");
-            switch (i) {
-                case 0:
-                    li.innerHTML = icons.H1 + "<span>  一级标题</span>"
-                    li.addEventListener("click", () => {
-                        const str: string = _this.editor.getContent()
-                        if (_this.editor.getLineModel().indexOf('# ') === 0) {
-                            return
-                        }
-                        _this.editor.insertText(_this.editor.getLineCusor(),'# ')
-                        _this.hElementHide()
-                    })
-                    break;
-                case 1:
-                    li.innerHTML = icons.H2 + "<span>  二级标题</span>"
-                    break;
-                case 2:
-                    li.innerHTML = icons.H3 + "<span>  三级标题</span>"
-                    break;
-                case 3:
-                    li.innerHTML = icons.LevelFourTitle + "<span>  四级标题</span>"
-                    break;
-                case 4:
-                    li.innerHTML = icons.LevelFiveTitle + "<span>  五级标题</span>"
-                    break;
-                case 5:
-                    li.innerHTML = icons.LevelSixTitle + "<span>  六级标题</span>"
-                    break;
-                default:
-                    break;
-            }
-            
+            this.createLi(i,li)
             this.hElement.appendChild(li)
         }
         this.hElement.addEventListener("mouseleave", () => {
@@ -86,6 +55,34 @@ export class Header {
     }
     hElementHide() {
         this.hElement.className = "hw-toolbar-head-level none"
+    }
+
+    createLi(i:number, li:HTMLElement) {
+        const title = ['一', '二', '三', '四', '五', '六']
+        const iconsLevel = ['H1', 'H2', 'H3', 'LevelFourTitle', 'LevelFiveTitle', 'LevelSixTitle']
+        li.innerHTML = `${icons[iconsLevel[i]]} <span>  ${title[i]}级标题</span>`
+        li.addEventListener("click", () => { 
+            this.liClick(i)
+        })
+    }
+    
+    liClick(i: number) {
+        const headerArr = ['# ','## ','### ','#### ','##### ','###### ']
+        const str: string = this.editor.getContent()
+        let isHeader = -1
+        for (let j = 0; j < headerArr.length; j++) {
+            const element = headerArr[j];
+            if (this.editor.getLineModel().indexOf(element)===0) {
+                isHeader = j
+                break
+            }
+        }
+        if (isHeader !== -1) {
+            this.editor.deleteText(this.editor.getLineCusor(),isHeader+2)
+        }
+        this.editor.setSelection(this.editor.getCusor().anchor + i + 2)
+        this.editor.insertText(this.editor.getLineCusor(),headerArr[i])
+        this.hElementHide()
     }
 }
 

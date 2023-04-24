@@ -16,15 +16,10 @@ export class ListTwo {
     addEventListener() {
         const _this = this
         this.element.addEventListener("click", (e) => {
-            const str:string = _this.editor.getContent()
-            if (!_this.editor.getSelectionModel().isCollapsed()) {
-                _this.editor.insertTextAtCursor(`**${str?.substring(_this.editor.getCusor().anchor,_this.editor.getCusor().focus)}**`)
-            } else {
-                _this.editor.insertTextAtCursor(`****`)
-                console.log(_this.editor.getCusor().anchor);
-                _this.editor.setSelection(_this.editor.getCusor().anchor-2)
-            }
+            this.editor.setSelection(this.editor.getCusor().anchor + 2)
+            this.editor.insertText(this.editor.getLineCusor(), '- ')
         })
     }
+    // TODO:增加tab监听
 }
 
